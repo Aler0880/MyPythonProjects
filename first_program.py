@@ -1,4 +1,4 @@
-n = int(input("Введите число 'n': "))
+n = int(input("Введите предельное число 'n': "))
 l = list(range(1, n + 1))
 print(l)
 
