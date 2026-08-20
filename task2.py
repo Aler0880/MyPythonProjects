@@ -1,21 +1,29 @@
-def count_stats():
-
-    filename = input("Введите имя файла: ")
-
-    with open(filename, "r", encoding="utf-8") as f:
-        content = f.read()
-        num_of_words = len(content.split())
-        num_of_symbols = len(content)
-
-    with open(filename, "r", encoding="utf-8") as f:
-        num_of_str = sum(1 for line in f)
-
-    stats = (num_of_str, num_of_words, num_of_symbols)
-    print(content)
-    print(stats)
-    print("Количество строк: ", num_of_str)
-    print("Количество слов: ", num_of_words)
-    print("Количество символов: ", num_of_symbols)
+filename = input("Введите имя файла: ")
 
 
-count_stats()
+def count_stats(filename):
+
+    try:
+        with open(filename, "r", encoding="utf-8") as f:
+            num_of_str = 0
+            num_of_words = 0
+            num_of_symbols = 0
+            for line in f:
+                num_of_str += 1
+                num_of_words += len(line.split())
+                num_of_symbols += len(line)
+            if num_of_symbols == 0:
+                return print("Файл пуст")
+
+        stats = (num_of_str, num_of_words, num_of_symbols)
+
+        return stats
+
+    except FileNotFoundError:
+        print("Файл не найден")
+
+
+count_stats(filename)
+
+with open("result.txt", "w", encoding="utf-8") as f:
+    f.write(str(count_stats(filename)))
