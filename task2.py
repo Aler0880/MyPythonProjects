@@ -13,7 +13,7 @@ def count_stats(filename):
                 num_of_words += len(line.split())
                 num_of_symbols += len(line)
             if num_of_symbols == 0:
-                return print("Файл пуст")
+                return "Файл пуст"
 
         return (filename, num_of_str, num_of_words, num_of_symbols)
 
