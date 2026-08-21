@@ -13,17 +13,22 @@ def count_stats(filename):
                 num_of_words += len(line.split())
                 num_of_symbols += len(line)
             if num_of_symbols == 0:
-                return print("Файл пуст")
+                return f"Файл: {filename}\nФайл пуст"
 
-        stats = (num_of_str, num_of_words, num_of_symbols)
-
-        return stats
+        return (filename, num_of_str, num_of_words, num_of_symbols)
 
     except FileNotFoundError:
-        print("Файл не найден")
+        return "Файл не найден"
 
-
-count_stats(filename)
 
 with open("result.txt", "w", encoding="utf-8") as f:
-    f.write(str(count_stats(filename)))
+    result = count_stats(filename)
+    if type(result) == tuple:
+        f.write(
+            f"Файл: {result[0]}\nСтрок: {result[1]}\nСлов: {result[2]}\nСимволов: {result[3]}"
+        )
+    else:
+        f.write(str(result))
+
+with open("result.txt", "r", encoding="utf-8") as f:
+    print(f.read())
