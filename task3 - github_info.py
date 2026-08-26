@@ -36,11 +36,11 @@ try:
                     f"\nФорков: {forks}\nОбновлён: {updated}")
         # print("Нет такого: ", nonex)
 
-except requests.exceptions.RequestException:
+except requests.exceptions.RequestException as e:
 
-    print("Ошибка связи")
+    print(f"Ошибка связи: {e}")
     with open("result3.txt", "w", encoding="utf-8") as f:
-        f.write("Ошибка связи")
+        f.write(f"Ошибка связи: {e}")
 
 # print(response.status_code)
 
