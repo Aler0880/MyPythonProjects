@@ -15,6 +15,9 @@ class Animal:
     def info(self):
         return(f"Вид: {self.species}\nИмя: {self.name}\nВозраст: {self.age}")
 
+    def __str__(self):
+        return f"Вид: {self.species}; Имя: {self.name}; Возраст: {self.age}"
+
 
 class Dog(Animal):
 
@@ -23,6 +26,9 @@ class Dog(Animal):
 
     def fetch(self):
         return(f"{self.name} несёт мяч")
+
+    def __str__(self):
+            return f"Имя: {self.name}; Возраст: {self.age}"
 
 
 class Cat(Animal):
@@ -33,6 +39,9 @@ class Cat(Animal):
     def murr(self):
         return(f"{self.name} мурлычет...")
 
+    def __str__(self):
+                return f"Имя: {self.name}; Возраст: {self.age}"
+
 dog = Dog("собака", input("Имя собаки: "), input("Возраст собаки: "))
 cat = Cat("кошка", input("Имя кошки: "), input("Возраст кошки: "))
 bobr = Animal("бобер", input("Имя бобра: "), input("Возраст бобра: "))
@@ -40,14 +49,14 @@ animal_sound = input("Какой звук издаёт бобёр?: ")
 animal_doing = input("Что делает бобёр?: ")
 
 print()
-print(dog.info())
+print(dog)
 print('Издаёт звук: ', dog.make_sound())
 print('Что делает: ', dog.fetch())
 print()
-print(cat.info())
+print(cat)
 print('Издаёт звук: ', cat.make_sound())
 print('Что делает: ', cat.murr())
 print()
-print(bobr.info())
+print(bobr)
 print("Бобёр издаёт звук: ", bobr.make_sound())
 print('Бобёр', bobr.make_something())
