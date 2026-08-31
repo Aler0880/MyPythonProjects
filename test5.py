@@ -1,18 +1,49 @@
-class Animal:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
+# class Длина:
+#     def __init__(self, метры):
+#         self._метры = метры
+
+#     @property
+#     def метры(self):
+#         return self._метры
+
+#     @метры.setter
+#     def метры(self, значение):
+#         self._метры = значение
+
+#     @property
+#     def сантиметры(self):
+#         return self._метры * 100
+
+#     @сантиметры.setter
+#     def сантиметры(self, значение):
+#         self._метры = значение / 100
+
+# d = Длина(2)          # 2 метра
+# print(d.сантиметры)   # 200
+# d.сантиметры = 150    # устанавливаем 150 см
+# print(d.метры)        # 1.5
 
 
-class Dog(Animal):
+class Square:
+    def __init__(self, side):
 
-    def color(self):
-        return f"black"
+        self.side = side
 
-    def __str__(self):
-        return f"{self.name}, {self.age}, {self.color()}"
+    @property
+    def area(self):
+        return self.side**2
+
+    @property
+    def perimeter(self):
+        return self.side * 4
 
 
-my_dog = Dog("Reks", 5)
+Sq1 = Square(int(input("Введите сторону квадрата: ")))
 
-print(my_dog)
+print(f"Площадь: {Sq1.area:.2f}")
+print(f"Периметр: {Sq1.perimeter:.2f}")
+
+Sq1.side = int(input("Введите сторону квадрата: "))
+
+print(f"Площадь: {Sq1.area:.2f}")
+print(f"Периметр: {Sq1.perimeter:.2f}")
