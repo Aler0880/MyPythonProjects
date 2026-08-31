@@ -1,25 +1,16 @@
 # %%
-class A:
-    pass
+class A: pass
+class B(A): pass
+class C(A): pass
+class D(B, C): pass
+class E(B, C): pass
 
+# 1. Ромб + еще один родитель
+class F(D, E): pass  
 
-class B(A):
-    pass
-
-
-class C(A):
-    pass
-
-
-class D(B, C):
-    pass  # Рабочий ромб
-
-
-class E(C, B):
-    pass  # Раскомментируйте эту строку — и получите ошибку!
-
+# 2. Еще более хитрый порядок
+class G(E, D): pass  
 
 # %%
-print("MRO для D (рабочий):", [c.__name__ for c in D.__mro__])
-# Попробуйте поменять местами B и C в определении D и посмотрите, как изменится порядок
-# %%
+print("MRO для F:", [c.__name__ for c in F.__mro__])
+print("MRO для G:", [c.__name__ for c in G.__mro__])
