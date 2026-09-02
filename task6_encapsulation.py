@@ -75,6 +75,10 @@ class Book:
             "message": self.message,
         }
 
+    def __repr__(self):
+        return (f'Book(Название: "{self.title}", Автор: {self.author}, Год издания: {self.year}, Кол-во страниц: {self.pages}, '
+                f'Посыл: {self.message}')
+
 
 books = [
     Book(
@@ -233,8 +237,45 @@ with open("books.json", "w", encoding="utf-8") as f:
     json.dump(books_dicts, f, ensure_ascii=False, indent=2)
 
 with open("books.txt", "w", encoding="utf-8") as f:
-    f.write("*")
+    f.write("?")
 
 for book in books:
     with open("books.txt", "a", encoding="utf-8") as f:
         f.write(f"{book.info()}")
+
+print(repr(books[0]))
+print()
+
+if __name__ == "__main__":
+    # Создаём тестовую книгу
+    b = Book("Тестовая книга", "Тестовый автор", 2020, 300, "Тестовое сообщение")
+    print("Создана книга:")
+    print(b)   # вызовет __repr__
+    print()
+
+    # Проверяем изменение через сеттер
+    b.title = "Новое название"
+    print("После изменения названия:")
+    print(b)
+    print()
+
+    # Проверяем ошибки
+    print("Попытка установить отрицательное количество страниц:")
+    try:
+        b.pages = -10
+    except ValueError as e:
+        print("Ошибка:", e)
+    print()
+
+    print("Попытка установить год 2030 (больше 2026):")
+    try:
+        b.year = 2030
+    except ValueError as e:
+        print("Ошибка:", e)
+    print()
+
+    print("Попытка установить пустое название:")
+    try:
+        b.title = ""
+    except ValueError as e:
+        print("Ошибка:", e)
