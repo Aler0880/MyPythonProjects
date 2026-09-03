@@ -226,13 +226,13 @@ books = [
     Book("Тест", "Тест", 2000, 500, "Тест"),
 ]
 
-for book in books:
+""" for book in books:
     print(book.info())
     if book.is_long():
         print("Книга длинная")
     else:
         print("Книга короткая")
-    print()
+    print() """
 
 books_dicts = [book.to_dict() for book in books]
 
@@ -246,7 +246,7 @@ for book in books:
     with open("books.txt", "a", encoding="utf-8") as f:
         f.write(f"{book.info()}")
 
-print(repr(books[0]))
+print(*books[0:5], sep="\n\n")
 print()
 
 if __name__ == "__main__":
