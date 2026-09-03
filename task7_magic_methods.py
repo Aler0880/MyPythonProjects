@@ -27,12 +27,31 @@ class Vector2D:
     def __len__(self):
         return int((self.x**2 + self.y**2) ** 0.5)
 
-    def distance(self, vec1, vec2):
-        vec1 = Vector2D(x1, y1)
-        self.vec1 = Vector2D(v.x, vec1.y)
-        self.vec2 = Vector2D(vec2.x, vec2.y)
+    def __getitem__(self, key):
+        if key == 0:
+            return self.x
+        elif key == 1:
+            return self.y
+        else:
+            raise IndexError("Index out of range (0 or 1 allowed)")
 
-        return ((self.x - other.x) ** 2 + (self.y - other.y) ** 2) ** 0.5
+    def __setitem__(self, key, value):
+        if key == 0:
+            self.x = value
+        elif key == 1:
+            self.y = value
+        else:
+            raise IndexError("Index out of range (0 or 1 allowed)")
+
+    def distance(self, vec):
+
+        self.vec = vec
+        vec = Vector2D(vec.x, vec.y)
+        return ((self.x - vec.x) ** 2 + (self.y - vec.y) ** 2) ** 0.5
+
+
+def dis(vector1, vector2):
+    return ((vector1[0] - vector2[0]) ** 2 + (vector1[1] - vector2[1]) ** 2) ** 0.5
 
 
 v1 = Vector2D(3, 4)
@@ -42,6 +61,9 @@ v4 = v2 - v1
 v5 = v1 * 2
 v6 = 2 * v1
 
+print(dis(v1, v2))
+print(v1.distance(v2))
+print()
 print(v1, "+", v2, "=", v3)
 print(v2, "-", v1, "=", v4)
 print(v1, "*", 2, "=", v5)
@@ -51,3 +73,8 @@ print(v5 == v6)
 print(len(v1))
 print()
 print(repr(v1), repr(v2), repr(v3), sep="\n")
+
+print(v1)
+v1[0] = 10
+v1[1] = 11
+print(v1)
