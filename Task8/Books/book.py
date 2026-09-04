@@ -77,3 +77,9 @@ class Book:
             f'Book(Название: "{self.title}", Автор: {self.author}, Год издания: {self.year}, Кол-во страниц: {self.pages}, '
             f"Посыл: {self.message}"
         )
+
+    def __str__(self):
+        return (
+            f'Название: "{self.title}"\nАвтор: {self.author}\nГод издания: {self.year}\nКол-во страниц: {self.pages}\n'
+            f"Посыл: {self.message}\n"
+        )
