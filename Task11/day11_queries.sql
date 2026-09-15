@@ -34,3 +34,16 @@ WHERE id IN (SELECT author_id FROM books);
 EXPLAIN ANALYZE
 SELECT a.name FROM authors a
 WHERE EXISTS (SELECT 1 FROM books b WHERE b.author_id = a.id);
+
+-- Альтернатива NOT IN, устойчивая к NULL:
+SELECT a.name
+FROM authors a
+LEFT JOIN books b ON a.id = b.author_id
+WHERE b.author_id IS NULL;
+
+Запрос №5 (скалярный) можно усилить. Сейчас он возвращает книги дороже средней. Добавь проверку на NULL в price, если такие данные возможны:
+
+SELECT title, price
+FROM books
+WHERE price > (SELECT AVG(price) FROM books)
+  AND price IS NOT NULL;
