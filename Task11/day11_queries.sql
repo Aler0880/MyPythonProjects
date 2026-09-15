@@ -26,3 +26,11 @@ FROM authors a;
 -- 7. JOIN-эквивалент п.1
 SELECT DISTINCT a.name FROM authors a
 JOIN books b ON a.id = b.author_id;
+
+EXPLAIN ANALYZE
+SELECT name FROM authors
+WHERE id IN (SELECT author_id FROM books);
+
+EXPLAIN ANALYZE
+SELECT a.name FROM authors a
+WHERE EXISTS (SELECT 1 FROM books b WHERE b.author_id = a.id);
