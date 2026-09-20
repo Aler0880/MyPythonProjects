@@ -1,5 +1,8 @@
 import psycopg2
 
+import os
+output_path = os.path.join(os.path.dirname(__file__), "output_day12.txt")
+
 try:
     conn = psycopg2.connect(
         dbname="sqlcourse",
@@ -19,10 +22,10 @@ try:
 
     result = cur.fetchall()
 
-    with open("C:\\Users\\User\\MyPythonProjects\\Task12\\output_day12.txt", "w", encoding="utf-8") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         for name, books_count in result:
             if name == None:
-                name = 'неизвестен'
+                name = 'Неизвестен'
             f.write(f"Автор: {name} — Книг: {books_count}\n")
 
     for name, books_count in result:
