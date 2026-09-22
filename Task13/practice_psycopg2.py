@@ -117,4 +117,7 @@ def ex3():
     conn.close()
 
 
-ex1a()
+# ex1a()
+# ex1b()
+# ex2()
+ex3()
