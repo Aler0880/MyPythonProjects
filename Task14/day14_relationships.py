@@ -25,10 +25,17 @@ from sqlalchemy import select
 
 with Session(engine) as session:
     author = session.get(Author, 5)   # Джойс
-    # Твоя задача: убедиться, что author.books == []
+    # Моя задача: убедиться, что author.books == []
     if author is None:
         print("Автор не найден")
     else:
         print(author.books)          # Pylance доволен: здесь author точно Author
         if not author.books:
             print("У автора нет книг")
+
+# Считаем книги авторов (N + 1)
+with Session(engine) as session:
+    stmt = select(Author)
+    authors = session.execute(stmt).scalars().all()
+    for a in authors:
+        print(f"{a.name}: {len(a.books)} книг")
