@@ -29,7 +29,7 @@ class Book(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(String(200))
     year: Mapped[int | None] = mapped_column(Integer)
-    price: Mapped[Decimal] = mapped_column(Numeric(10, 2))
+    price: Mapped[Decimal | None] = mapped_column(Numeric(10, 2))
     author_id: Mapped[int | None] = mapped_column(ForeignKey("authors.id"))
     author: Mapped["Author | None"] = relationship(back_populates="books")
 
