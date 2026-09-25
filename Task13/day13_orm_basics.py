@@ -2,7 +2,7 @@ from sqlalchemy import String, Integer, create_engine, select, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, Session, relationship
 
 DATABASE_URL = "postgresql+psycopg2://postgres:sql12@localhost:5432/sqlcourse"
-engine = create_engine(DATABASE_URL, echo=True)
+engine = create_engine(DATABASE_URL, echo=False)
 
 
 class Base(DeclarativeBase):

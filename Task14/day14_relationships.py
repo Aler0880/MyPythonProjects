@@ -1,27 +1,30 @@
 import sys
 
-sys.path.append("c:\\Users\\User\\MyPythonProjects")
+sys.path.extend([
+    r"c:\Users\User\MyPythonProjects",
+    r"C:\Users\Aler\MyPythonProjects",
+])
 
 from Task13.day13_orm_basics import Author, Book, engine
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 
-# with Session(engine) as session:
-#     author = session.get(Author, 1)
-#     if author is None:
-#         print("Автор не найден")
-#     else:
-#         print(f"Имя автора: {author.name}\nСтрана: {author.country}")
+with Session(engine) as session:
+    author = session.get(Author, 1)
+    if author is None:
+        print("Автор не найден")
+    else:
+        print(f"Имя автора: {author.name}\nСтрана: {author.country}")
 
-# with Session(engine) as session:
-#     book = session.get(Book, 7)
+with Session(engine) as session:
+    book = session.get(Book, 7)
 
-#     if book is None:
-#         print("Книга не найдена")
-#     elif book.author is None:
-#         print("Автор неизвестен")
-#     else:
-#         print(book.author.name)
+    if book is None:
+        print("Книга не найдена")
+    elif book.author is None:
+        print("Автор неизвестен")
+    else:
+        print(book.author.name)
 
 with Session(engine) as session:
     author = session.get(Author, 5)   # Джойс
