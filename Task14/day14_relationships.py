@@ -27,6 +27,25 @@ with Session(engine) as session:
         print(book.author.name)
 
 with Session(engine) as session:
+    book = session.get(Book, 1)
+
+    if book is None:
+        print("Книга не найдена")
+    elif book.author is None:
+        print("Автор неизвестен")
+    else:
+        print(book.author.name)
+
+with Session(engine) as session:
+    author = session.get(Author, 1) 
+    if author is None:
+        print("Автор не найден")
+    else:
+        print(author.books)          # Pylance доволен: здесь author точно Author
+        if not author.books:
+            print("У автора нет книг")
+
+with Session(engine) as session:
     author = session.get(Author, 5)   # Джойс
     # Моя задача: убедиться, что author.books == []
     if author is None:
