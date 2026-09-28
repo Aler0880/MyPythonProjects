@@ -1,9 +1,7 @@
 import sys
+from pathlib import Path
 
-sys.path.extend([
-    r"c:\Users\User\MyPythonProjects",
-    r"C:\Users\Aler\MyPythonProjects",
-])
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from Task13.day13_orm_basics import Author, Book, engine
 from sqlalchemy.orm import Session
@@ -27,12 +25,31 @@ with Session(engine) as session:
         print(book.author.name)
 
 with Session(engine) as session:
-    author = session.get(Author, 5)   # Джойс
+    book = session.get(Book, 1)
+    if book is None:
+        print("Книга не найдена")
+    elif book.author is None:
+        print("Автор неизвестен")
+    else:
+        print(book.author.name)
+
+with Session(engine) as session:
+    author = session.get(Author, 1)
+    if author is None:
+        print("Автор не найден")
+    else:
+        for book in author.books: 
+            print(book.title, book.price)  # Pylance доволен: здесь author точно Author
+        if not author.books:
+            print("У автора нет книг")
+
+with Session(engine) as session:
+    author = session.get(Author, 5)  # Джойс
     # Моя задача: убедиться, что author.books == []
     if author is None:
         print("Автор не найден")
     else:
-        print(author.books)          # Pylance доволен: здесь author точно Author
+        print(author.books)  # Pylance доволен: здесь author точно Author
         if not author.books:
             print("У автора нет книг")
 
