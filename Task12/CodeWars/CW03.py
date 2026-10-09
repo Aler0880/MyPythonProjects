@@ -1,2 +1,3 @@
-s = 'hello'
-print(''.join(reversed(s)))
+s = "hello"
+print("".join(reversed(s)))
+print(s[::-1])
